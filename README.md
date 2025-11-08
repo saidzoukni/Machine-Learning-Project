@@ -1,0 +1,235 @@
+# AI/ML Classification Platform
+
+A Django web application that demonstrates machine learning classification algorithms through interactive examples. The platform showcases two different classification algorithms with practical use cases.
+
+## 🎯 Features
+
+- **Logistic Regression Algorithm**: Vehicle classification (Camion/Touristique) based on height and number of wheels
+- **Decision Tree Algorithm**: Restaurant online order prediction based on restaurant characteristics
+- Interactive web forms for testing predictions
+- Detailed algorithm information pages
+- Model training scripts included
+
+## 🛠️ Technologies Used
+
+- **Backend**: Django 5.2.7
+- **Machine Learning**: scikit-learn
+- **Data Processing**: pandas, numpy
+- **Model Serialization**: joblib
+- **Frontend**: Bootstrap 5.3.0
+- **Database**: SQLite
+
+## 📋 Prerequisites
+
+- Python 3.8 or higher
+- pip (Python package manager)
+- Virtual environment (recommended)
+
+## 🚀 Installation
+
+### 1. Clone or Download the Project
+
+```bash
+cd Ai_ML_Project
+```
+
+### 2. Create a Virtual Environment
+
+**Windows:**
+```bash
+python -m venv AI_env
+AI_env\Scripts\activate
+```
+
+**Linux/Mac:**
+```bash
+python3 -m venv AI_env
+source AI_env/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install --upgrade pip
+pip install django scikit-learn numpy pandas joblib
+```
+
+## 🎓 Training Models
+
+### Logistic Regression Model (Vehicle Classification)
+
+The Logistic Regression model is already trained and saved. To retrain it:
+
+```bash
+python models_ai/train_logreg.py
+```
+
+This generates: `models_ai/logreg_model.pkl`
+
+### Decision Tree Model (Restaurant Classification)
+
+**Step 1:** Place your `zomato.csv` dataset in one of these locations:
+- `Ai_ML_Project/models_ai/zomato.csv`
+- `Ai_ML_Project/zomato.csv`
+- Or in the directory where you run the script
+
+**Step 2:** Train the model:
+```bash
+python models_ai/train_dectree.py
+```
+
+This generates:
+- `models_ai/dectree_model.pkl` - The trained Decision Tree model
+- `models_ai/label_encoders.pkl` - LabelEncoders for categorical features
+- `models_ai/scaler.pkl` - StandardScaler for numerical features
+
+## 🏃 Running the Application
+
+### 1. Run Database Migrations
+
+```bash
+python manage.py migrate
+```
+
+### 2. Start the Development Server
+
+```bash
+python manage.py runserver
+```
+
+### 3. Access the Application
+
+Open your browser and navigate to:
+```
+http://127.0.0.1:8000/
+```
+
+## 📁 Project Structure
+
+```
+Ai_ML_Project/
+├── Ai_ML_Project/          # Django project settings
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── DjangoApp/              # Main Django application
+│   ├── templates/          # HTML templates
+│   │   ├── index.html     # Home page with algorithm cards
+│   │   ├── regLog_*.html  # Logistic Regression pages
+│   │   ├── dectree_*.html # Decision Tree pages
+│   │   └── restaurant_form_dectree.html
+│   ├── static/            # Static files (CSS, images, PDFs)
+│   ├── views.py           # View functions
+│   └── urls.py            # URL routing
+├── models_ai/             # Machine learning models
+│   ├── train_logreg.py    # Logistic Regression training script
+│   ├── train_dectree.py   # Decision Tree training script
+│   ├── logreg_model.pkl  # Trained Logistic Regression model
+│   ├── dectree_model.pkl # Trained Decision Tree model
+│   ├── label_encoders.pkl # LabelEncoders for Decision Tree
+│   └── scaler.pkl        # StandardScaler for Decision Tree
+├── manage.py              # Django management script
+└── README.md             # This file
+```
+
+## 🎮 Usage Guide
+
+### Logistic Regression - Vehicle Classification
+
+1. Navigate to the home page
+2. Click on "Algorithme Régression Logistique" card
+3. Click "Exemple de Classification"
+4. Adjust the sliders for:
+   - **Hauteur (m)**: Vehicle height (2.0 - 5.5 meters)
+   - **Nombre de roues**: Number of wheels (4 - 18)
+5. Click "Predict" to see the classification result
+
+### Decision Tree - Restaurant Online Order Prediction
+
+1. Navigate to the home page
+2. Click on "Algorithme Arbre de Décision" card
+3. Click "Exemple de Classification"
+4. Fill in the restaurant form:
+   - Restaurant name
+   - Restaurant type (Casual Dining, Quick Bites, etc.)
+   - City
+   - Service type (Buffet, Delivery, etc.)
+   - Rating (0-5)
+   - Approximate cost (for 2 people)
+   - Cuisines (comma-separated)
+   - Favorite dishes (comma-separated)
+   - Table booking availability
+5. Click "Prédire la commande en ligne" to see the prediction
+
+## 📊 Dataset Information
+
+### Vehicle Classification Dataset
+- **Type**: Synthetic dataset
+- **Features**: Height (meters), Number of wheels
+- **Target**: Vehicle type (Camion/Touristique)
+- **Generated by**: `train_logreg.py`
+
+### Restaurant Classification Dataset
+- **Type**: Zomato restaurant dataset
+- **Features**: 
+  - Categorical: name, rest_type, city, type, cuisines, dish_liked, book_table
+  - Numerical: rate, cost
+- **Target**: online_order (Yes/No)
+- **Source**: External dataset (zomato.csv)
+
+## 🔧 Configuration
+
+### Model Paths
+Models are automatically loaded from `models_ai/` directory. The application looks for:
+- `logreg_model.pkl` for Logistic Regression
+- `dectree_model.pkl` for Decision Tree
+- `label_encoders.pkl` and `scaler.pkl` for Decision Tree preprocessing
+
+### Static Files
+Static files (images, PDFs) should be placed in:
+- `DjangoApp/static/images/` - For images
+- `DjangoApp/static/pdfs/` - For PDF documents
+
+## 🐛 Troubleshooting
+
+### Model Not Found Error
+- Ensure model files (`.pkl`) are in the `models_ai/` directory
+- Run the training scripts to generate missing models
+
+### Import Errors
+- Activate your virtual environment
+- Install all dependencies: `pip install -r requirements.txt` (if available)
+- Or install manually: `pip install django scikit-learn numpy pandas joblib`
+
+### Dataset Not Found (Decision Tree)
+- Place `zomato.csv` in one of the locations mentioned in the training section
+- Check the file path in `train_dectree.py` if needed
+
+## 📝 Notes
+
+- The Decision Tree model requires the actual encoders and scaler from training for accurate predictions
+- If encoders/scaler are missing, the application uses a fallback encoding method (less accurate)
+- Make sure to train models with the same preprocessing steps used in the views
+
+## 👨‍💻 Development
+
+### Adding New Algorithms
+
+1. Create new views in `DjangoApp/views.py`
+2. Add URL patterns in `DjangoApp/urls.py`
+3. Create templates in `DjangoApp/templates/`
+4. Add algorithm card to `index.html`
+5. Create training script in `models_ai/`
+
+## 📄 License
+
+This project is for educational purposes.
+
+## 👥 Author
+
+3rd Year ML Project
+
+---
+
+**Note**: This platform is designed for educational demonstration of machine learning classification algorithms. For production use, additional security, validation, and error handling should be implemented.
+

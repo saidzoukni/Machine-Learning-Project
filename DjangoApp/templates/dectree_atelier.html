@@ -1,0 +1,44 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-3">Atelier Pratique - Classification des restaurants</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Dataset de restaurants Zomato</h3>
+            <p>
+                Démonstration d'entraînement d'un modèle d'arbre de décision pour
+                prédire si un restaurant propose la commande en ligne (online_order) 
+                en fonction de ses caractéristiques : nom, type, ville, note, type de restaurant,
+                plats préférés, cuisines, coût et réservation de table.
+            </p>
+            <a class="btn btn-success col-12 mt-2 mb-2" href="{% url 'dectree_tester' %}">Tester le modèle</a>
+        </div>
+        <div class="col-md-6">
+            <h4>Caractéristiques utilisées :</h4>
+            <ul>
+                <li>Nom du restaurant</li>
+                <li>Type de restaurant</li>
+                <li>Ville</li>
+                <li>Note (rate)</li>
+                <li>Type de service</li>
+                <li>Plats préférés</li>
+                <li>Cuisines</li>
+                <li>Coût approximatif</li>
+                <li>Réservation de table</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <iframe src="{% static 'pdfs/chapitre5.pdf' %}" width="100%" height="600px" style="border:1px solid #ccc;"></iframe>
+        <p class="mt-2">
+            Si votre navigateur ne supporte pas les PDFs, téléchargez-le :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+

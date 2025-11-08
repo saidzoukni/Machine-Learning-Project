@@ -1,0 +1,98 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Prédiction de commande en ligne pour restaurant</h2>
+    <div class="card">
+        <div class="card-header">
+            <h5>Remplissez les informations du restaurant</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'dectree_prediction' %}" class="ps-4 pe-4 pt-4 pb-4">
+                {% csrf_token %}
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="name" class="form-label">Nom du restaurant</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Ex: Jalsa" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="rest_type" class="form-label">Type de restaurant</label>
+                        <select class="form-select" id="rest_type" name="rest_type" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="Casual Dining">Casual Dining</option>
+                            <option value="Quick Bites">Quick Bites</option>
+                            <option value="Cafe">Cafe</option>
+                            <option value="Fine Dining">Fine Dining</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Dessert Parlor">Dessert Parlor</option>
+                            <option value="Bakery">Bakery</option>
+                            <option value="Bar">Bar</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="city" class="form-label">Ville</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Ex: Banashankari" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="type" class="form-label">Type de service</label>
+                        <select class="form-select" id="type" name="type" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="Buffet">Buffet</option>
+                            <option value="Cafes">Cafes</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Desserts">Desserts</option>
+                            <option value="Dine-out">Dine-out</option>
+                            <option value="Drinks & nightlife">Drinks & nightlife</option>
+                            <option value="Pubs and bars">Pubs and bars</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="rate" class="form-label">Note (0-5)</label>
+                        <input type="number" class="form-control" id="rate" name="rate" min="0" max="5" step="0.1" value="4.0" required>
+                        <small class="form-text text-muted">Note du restaurant sur 5</small>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="cost" class="form-label">Coût approximatif (pour 2 personnes)</label>
+                        <input type="number" class="form-control" id="cost" name="cost" min="0" step="50" value="500" required>
+                        <small class="form-text text-muted">Coût en roupies</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cuisines" class="form-label">Cuisines</label>
+                    <input type="text" class="form-control" id="cuisines" name="cuisines" placeholder="Ex: North Indian, Mughlai, Chinese" required>
+                    <small class="form-text text-muted">Séparez les cuisines par des virgules</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dish_liked" class="form-label">Plats préférés</label>
+                    <input type="text" class="form-control" id="dish_liked" name="dish_liked" placeholder="Ex: Pasta, Lunch Buffet, Masala Papad" required>
+                    <small class="form-text text-muted">Séparez les plats par des virgules</small>
+                </div>
+
+                <div class="mb-4">
+                    <label for="book_table" class="form-label">Réservation de table disponible ?</label>
+                    <select class="form-select" id="book_table" name="book_table" required>
+                        <option value="Yes">Oui</option>
+                        <option value="No">Non</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary col-12">Prédire la commande en ligne</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+

@@ -1,0 +1,51 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <div class="card mt-3">
+        <div class="card-header">
+            <strong>Résultat de prédiction - Commande en ligne</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">Le restaurant propose-t-il la commande en ligne ?</h5>
+                    <div class="mt-3 mb-3">
+                        {% if online_order == 'Oui' %}
+                            <span class="badge bg-success" style="font-size: 1.2rem; padding: 10px 20px;">Oui ✓</span>
+                        {% else %}
+                            <span class="badge bg-danger" style="font-size: 1.2rem; padding: 10px 20px;">Non ✗</span>
+                        {% endif %}
+                    </div>
+                    <div class="alert alert-info">
+                        <strong>Prédiction :</strong> Le modèle prédit que ce restaurant 
+                        {% if online_order == 'Oui' %}
+                            <strong>propose</strong> la commande en ligne.
+                        {% else %}
+                            <strong>ne propose pas</strong> la commande en ligne.
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title">Caractéristiques du restaurant :</h5>
+                    <div class="mb-2">
+                        <div class="mb-2"><strong>Nom :</strong> {{ initial_data.name }}</div>
+                        <div class="mb-2"><strong>Type de restaurant :</strong> {{ initial_data.rest_type }}</div>
+                        <div class="mb-2"><strong>Ville :</strong> {{ initial_data.city }}</div>
+                        <div class="mb-2"><strong>Type de service :</strong> {{ initial_data.type }}</div>
+                        <div class="mb-2"><strong>Note :</strong> {{ initial_data.rate }}/5</div>
+                        <div class="mb-2"><strong>Coût (pour 2) :</strong> {{ initial_data.cost }} ₹</div>
+                        <div class="mb-2"><strong>Cuisines :</strong> {{ initial_data.cuisines }}</div>
+                        <div class="mb-2"><strong>Plats préférés :</strong> {{ initial_data.dish_liked }}</div>
+                        <div class="mb-2"><strong>Réservation :</strong> {{ initial_data.book_table }}</div>
+                    </div>
+                    <a href="{% url 'dectree_tester' %}" class="btn btn-primary mt-3">Faire une autre prédiction</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+

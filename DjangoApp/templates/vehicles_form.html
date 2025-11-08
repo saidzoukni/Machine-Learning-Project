@@ -1,0 +1,46 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-4">Les caractéristiques de la véhicule</h2>
+    <div class="card">
+        <div class="card-title">
+            <img src="{% static 'images/illustration.JPG' %}" width="100%" alt="illustration">
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'reglog_prediction' %}" class="ps-4 pe-4 pt-4 pb-4">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="hauteur" class="form-label">Hauteur (m)</label>
+                    <input type="range" class="form-range" min="2" max="5.5" step="0.1" id="hauteur" name="hauteur" value="3" oninput="hauteurValue.textContent=this.value">
+                    <span class="slider-value" id="hauteurValue">3</span>
+                </div>
+
+                <div class="mb-4">
+                    <label for="Nombre_de_roues" class="form-label">Nombre de roues</label>
+                    <input type="range" class="form-range" min="4" max="18" step="2" id="Nombre_de_roues" name="Nombre_de_roues" value="6" oninput="Nombre_de_rouesValue.textContent=this.value">
+                    <span class="slider-value" id="Nombre_de_rouesValue">6</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary col-12">Predict</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const hauteur = document.getElementById('hauteur');
+  const hauteurValue = document.getElementById('hauteurValue');
+  const roues = document.getElementById('Nombre_de_roues');
+  const rouesValue = document.getElementById('Nombre_de_rouesValue');
+  hauteurValue.textContent = hauteur.value;
+  rouesValue.textContent = roues.value;
+  hauteur.oninput = () => hauteurValue.textContent = hauteur.value;
+  roues.oninput = () => rouesValue.textContent = roues.value;
+});
+</script>
+
+{% include "includes/footer.html" %}
+
+

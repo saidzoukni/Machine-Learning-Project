@@ -1,0 +1,39 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-3">Algorithme d'Arbre de Décision</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Détails</h3>
+            <p>
+                L'arbre de décision est un modèle de classification supervisée qui utilise
+                une structure arborescente pour prendre des décisions. Chaque nœud interne
+                représente un test sur une caractéristique, chaque branche représente le résultat
+                du test, et chaque feuille représente une classe.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h3>Caractéristiques</h3>
+            <ul>
+                <li>Facile à interpréter et visualiser</li>
+                <li>Gestion automatique des caractéristiques non linéaires</li>
+                <li>Pas besoin de normalisation des données</li>
+                <li>Peut gérer les valeurs manquantes</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <iframe src="{% static 'pdfs/chapitre5.pdf' %}" width="100%" height="600px" style="border:1px solid #ccc;"></iframe>
+        <p class="mt-2">
+            Si l'affichage du PDF ne fonctionne pas, vous pouvez le télécharger ici :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger le PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+

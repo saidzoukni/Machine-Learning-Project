@@ -1,0 +1,33 @@
+{% include "includes/header.html" %}
+{% load static %}
+
+<div class="container">
+    <h2 class="mb-3">Atelier Pratique - Classification des véhicules</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Dataset de véhicules</h3>
+            <p>
+                Démonstration d'entraînement d'un modèle de régression logistique pour
+                classifier les véhicules en Camion ou Touristique selon le nombre de
+                roues et la hauteur.
+            </p>
+            <a class="btn btn-success col-12 mt-2 mb-2" href="{% url 'reglog_tester' %}">Tester le modèle</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/camion.jpg' %}" width="40%" alt="camion">
+            <img src="{% static 'images/touristique.jpg' %}" width="40%" alt="touristique">
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <iframe src="{% static 'pdfs/chapitre5.pdf' %}" width="100%" height="600px" style="border:1px solid #ccc;"></iframe>
+        <p class="mt-2">
+            Si votre navigateur ne supporte pas les PDFs, téléchargez-le :
+            <a href="{% static 'pdfs/chapitre5.pdf' %}">Télécharger PDF</a>
+        </p>
+    </div>
+</div>
+
+{% include "includes/footer.html" %}
+
+
